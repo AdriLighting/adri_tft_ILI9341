@@ -74,6 +74,7 @@ void adriTFTscreen_loop(){
 }
 void adriTFTscreen_display(int pos){
 	// Serial.printf("\n[adriTFTscreen_display] %s\n", adriTFTscreen_array[pos]->_id);
+	adriTFTscreen_pos = pos;
 	adriTFTscreen_array[pos]->display();
 }
 void adriTFTscreen_display(){
