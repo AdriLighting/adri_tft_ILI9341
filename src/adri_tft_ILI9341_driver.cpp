@@ -47,11 +47,14 @@ void tft_setup(Adafruit_ILI9341 * tft, XPT2046 * touch){
 
 		touch->begin(tft->width(), tft->height());  // Must be done before setting rotation
 		// Serial.print("tftx ="); Serial.print(tft->width()); Serial.print(" tfty ="); Serial.println(tft->height());
+		// calibrate( tft,  touch);
 
-  		touch->setCalibration(177,1712,1824,241);
+  		touch->setCalibration(1839,268,312,1784); // x2 1
+  		// touch->setCalibration(177,1712,1824,241); // x2 1
+  		// touch->setCalibration(1887,1799,352,288); // x1 1
 
-		tft->setRotation(1);
-		touch->setRotation(touch->ROT90);
+		tft->setRotation(3);
+		touch->setRotation(touch->ROT270);
 
 
 }

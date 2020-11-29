@@ -528,7 +528,12 @@ float mapF(float val, float fromLow, float fromHigh, float toLow, float toHigh) 
 // 	_tft->fillRect(x0, 	y0 + margin, 	pos - x0, 		barHeight, barColor);
 // 	_tft->fillRect(pos, y0 + margin, 	barWidth - pos + x0, 	barHeight, 0); 
 // }
-adriTFTUI_progressBar::adriTFTUI_progressBar(Adafruit_ILI9341 * tft, uint16_t x0, uint16_t y0, uint16_t w, uint16_t h, uint16_t r, float percentage, uint16_t frameColor, uint16_t barColor) {
+adriTFTUI_progressBar::adriTFTUI_progressBar(Adafruit_ILI9341 * tft, 
+	uint16_t x0, 
+	uint16_t y0, 
+	uint16_t w, 
+	uint16_t h, 
+	uint16_t r, float percentage, uint16_t frameColor, uint16_t barColor) {
 	_r 			= r;
 	_x 			= x0;
 	_y 			= y0;
@@ -545,11 +550,12 @@ void adriTFTUI_progressBar::draw(){
 	uint16_t 	barHeight 	= _h - (2 * margin);
 	uint16_t 	barWidth 	= _w - margin;
 
-	_tft->drawRect(_x, _y, _w, _h, _bc);
-
-	int pos = mapF(_percentage, _min, _max, (float) _x, (float) _x + (float) barWidth);
+	int pos = mapF(_percentage, _min, _max, (float) _x , (float) _x + (float) barWidth);
 	_tft->fillRect(_x, 	_y + margin, 	pos - _x, 				barHeight, _c);
-	_tft->fillRect(pos, _y + margin, 	barWidth - pos + _x, 	barHeight, 0); 	
+	_tft->fillRect(pos, _y + margin, 	barWidth - pos + _x, 	barHeight, 0); 
+
+	_tft->drawRect(_x, _y, _w, _h, _bc);
+		
 }
 void adriTFTUI_progressBar::drawUpd(){
 	uint8_t 	margin 		= 2;

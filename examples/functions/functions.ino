@@ -209,8 +209,8 @@ void loop()
 {
 	// if (timer_4->loop()) {adriTFTscreen_next(1);	screen_footer_display();}
 
-	adriTFTscreen_loop();
-	// button_loop();
+	// adriTFTscreen_loop();
+	button_loop();
 	
 }
 
