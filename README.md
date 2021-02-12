@@ -4,7 +4,8 @@
 <pre>
 
     based on esp8266 framework
-    https://github.com/AdriLighting/adri_tools_v2        
+    https://github.com/AdriLighting/adri_tools_v2  
+    https://github.com/AdriLighting/adri_tft_ILI9341_ESP
     https://github.com/Bodmer/JPEGDecoder
     https://github.com/adafruit/Adafruit-GFX-Library
     https://github.com/adafruit/Adafruit_BusIO
