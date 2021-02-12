@@ -242,6 +242,7 @@ void adriTFTUI_button::button_create_fromLoop(){
 		case BTM_TEXTUTF8:  buttonTextUtf8_create(_text);	break;
 		case BTM_FTEXTUTF8: buttonFromTextUtf8_create(_text);	break;		
 		case BTM_SIMPL: 	button_noBc_create();				break;		
+		default:break;
 	}
 }
 void adriTFTUI_button::button_upd(){
@@ -259,8 +260,8 @@ void adriTFTUI_button::button_upd(){
 		case BTM_FTEXT: 	buttonFromText_create(""); 	break;
 		case BTM_TEXTUTF8:  buttonTextUtf8_create(_text);	break;
 		case BTM_FTEXTUTF8: buttonFromTextUtf8_create(_text);	break;		
-		case BTM_SIMPL: 	button_noBc_create(); 			break;		
-
+		case BTM_SIMPL: 	button_noBc_create(); 			break;	
+		default:break;	
 	}
 }
 void adriTFTUI_button::button_create(){
@@ -427,7 +428,7 @@ void adriTFTUI_button::buttonNext_upd(){
 
 void adriTFTUI_button::button_create_volume(){
 	float sep 		= _s;
-	float sepRect	= _s;
+	// float sepRect	= _s;
 	float h 		= (_h-(sep*2));
 	float hRect 	= (_h/2.5);
 	float wRect 	= _w/4;
@@ -493,7 +494,7 @@ void adriTFTUI_button::button_create_triangle(){
 } 
 void adriTFTUI_button::button_create_triangle_top(){
 	float sep 	= _s;
-	float h 	= (_h-(sep*2));
+	// float h 	= (_h-(sep*2));
 	float x0 	= _x + sep;
 	float y0 	= _y+_h-(sep);
 	float x1 	= _x + (_w/2);
@@ -514,7 +515,7 @@ void adriTFTUI_button::button_create_triangle_top(){
 void adriTFTUI_button::button_create_triangle_bot(){
 
 	float sep 	= _s;
-	float h 	= (_h-(sep*2));
+	// float h 	= (_h-(sep*2));
 	float x0 	= _x + (_w/2); ;
 	float y0 	= ((_y + _h) ) - (_h*35)/100;;
 	float x1 	= _x + sep;
@@ -577,7 +578,7 @@ void adriTFTUI_button::buttonDown_upd(){
 void adriTFTUI_button::button_create_DoubleRectangle(){
 	int16_t w1 				= _w/2;
 	int16_t w2 				= w1/2;
-	int16_t btCenter_sep 	= 10;
+	// int16_t btCenter_sep 	= 10;
 	int16_t sep 			= _s;
 	int 	hB 				= (_h-(sep*2));
 	int 	wB 				= _w/4;
@@ -741,7 +742,7 @@ void adriTFTUI_button::button_create_textUtf8(String text) {
 
 	char buf[120];
 	sprintf(buf, "%s", getText.c_str());
-	uint16_t w, h, ha;
+	uint16_t w, h;
 
 	_u8g2.setFont(_u8g2_font); 	
 	_u8g2.setFontMode(0);                
@@ -749,7 +750,7 @@ void adriTFTUI_button::button_create_textUtf8(String text) {
   	_u8g2.setBackgroundColor(_backgroundColor);
   	_u8g2.setForegroundColor(_textColor);   
 
-	ha = _u8g2.getFontAscent();
+	// ha = _u8g2.getFontAscent();
 	h = _u8g2.getFontAscent() - _u8g2.getFontDescent();
 	w = _u8g2.getUTF8Width(buf);
 
@@ -802,7 +803,7 @@ void adriTFTUI_button::buttonFromTextUtf8(String text, int16_t btX, int16_t btY)
 
 	char buf[120];
 	sprintf(buf, "%s", getText.c_str());
-	uint16_t w, h, ha;
+	uint16_t w, h;
 
 	_u8g2.setFont(_u8g2_font); 	
 	_u8g2.setFontMode(1);                
@@ -810,7 +811,7 @@ void adriTFTUI_button::buttonFromTextUtf8(String text, int16_t btX, int16_t btY)
   	_u8g2.setBackgroundColor(_backgroundColor);
   	_u8g2.setForegroundColor(_textColor);    
 
-	ha = _u8g2.getFontAscent();
+	// ha = _u8g2.getFontAscent();
 	h = _u8g2.getFontAscent() ;
 	w = _u8g2.getUTF8Width(buf);
 

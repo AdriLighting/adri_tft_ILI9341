@@ -64,16 +64,16 @@ int semiArc(Adafruit_ILI9341 * _tft, int value, int vmin, int vmax, int x, int y
   
   // int angle = 90;  // Half the sweep angle of meter (300 degrees)
 
-  int text_colour = 0; // To hold the text colour
+  // int text_colour = 0; // To hold the text colour
 
-  int v = map(value, vmin, vmax, -angle, angle); // Map the value to an angle v
+  // int v = map(value, vmin, vmax, -angle, angle); // Map the value to an angle v
 
   byte seg = 5; // Segments are 5 degrees wide = 60 segments for 300 degrees
   byte inc = 5; // Draw segments every 5 degrees, increase to 10 for segmented ring
   // int incli = 10;
 
 	// Draw colour blocks every inc degrees
-  int ret;
+  int ret = 0;
 	for (int i = -angle; i < angle; i += inc) {
 
 		// Calculate pair of coordinates for segment start
@@ -154,6 +154,7 @@ int fillArc2(Adafruit_ILI9341 * _tft, int x, int y, int start_angle, int seg_cou
     x1 = x3;
     y1 = y3;
   }
+  return 0;
 }
 
 
@@ -183,7 +184,7 @@ draw7Number180(37,230,310,4, ILI9341_WHITE , ILI9341_BLACK,2);  //RIGHT2LEFT
 draw7Number270(37,230,10,4, ILI9341_WHITE , ILI9341_BLACK,2);   //UP2DOWN
 */
 void draw7Number(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned int yLoc, char cS, unsigned int fC, unsigned int bC, char nD) {
-	unsigned int num = abs(n), i, s, t, w, col, h, x, y, si = 0, j = 1, d = 0;
+	unsigned int num = abs(n), i, t, w, col, h, x, y, j = 1, d = 0;
 	unsigned int S2 = 5 * cS;                     // width of horizontal segments   5 times the cS
 	unsigned int S3 = 2 * cS;                     // thickness of a segment 2 times the cs
 	unsigned int S4 = 7 * cS;                     // height of vertical segments 7 times the cS
@@ -276,7 +277,7 @@ void draw7Number(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned in
 }
 
 void draw7Number90(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned int yLoc, char cS, unsigned int fC, unsigned int bC, char nD) {
-	unsigned int num = abs(n), i, s, t, w, col, h, x, y, si = 0, j = 1, d = 0;
+	unsigned int num = abs(n), i, t, w, col, h, x, y, j = 1, d = 0;
 	unsigned int S2 = 5 * cS;                     // width of horizontal segments   5 times the cS
 	unsigned int S3 = 2 * cS;                     // thickness of a segment 2 times the cs
 	unsigned int S4 = 7 * cS;                     // height of vertical segments 7 times the cS
@@ -370,7 +371,7 @@ void draw7Number90(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned 
 }
 
 void draw7Number180(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned int yLoc, char cS, unsigned int fC, unsigned int bC, char nD) {
-	unsigned int num = abs(n), i, s, t, w, col, h, x, y, si = 0, j = 1, d = 0;
+	unsigned int num = abs(n), i, t, w, col, h, x, y, j = 1, d = 0;
 	unsigned int S2 = 5 * cS;                     // width of horizontal segments   5 times the cS
 	unsigned int S3 = 2 * cS;                     // thickness of a segment 2 times the cs
 	unsigned int S4 = 7 * cS;                     // height of vertical segments 7 times the cS
@@ -463,7 +464,7 @@ void draw7Number180(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned
 }
 
 void draw7Number270(Adafruit_ILI9341 * _tft, long n, unsigned int xLoc, unsigned int yLoc, char cS, unsigned int fC, unsigned int bC, char nD) {
-	unsigned int num = abs(n), i, s, t, w, col, h, x, y, si = 0, j = 1, d = 0;
+	unsigned int num = abs(n), i, t, w, col, h, x, y, j = 1, d = 0;
 	unsigned int S2 = 5 * cS;                     // width of horizontal segments   5 times the cS
 	unsigned int S3 = 2 * cS;                     // thickness of a segment 2 times the cs
 	unsigned int S4 = 7 * cS;                     // height of vertical segments 7 times the cS

@@ -2,7 +2,7 @@
 #include "adri_tft_ILI9341_ui.h"
 #include "adri_tft_ILI9341_txt.h"
 
-#include <adri_tools.h>
+#include <adri_tools_v2.h>
 
 
 /* 	adriTFTUI
@@ -203,7 +203,7 @@ void adriTFTUI::drawBmp(String filename, uint8_t x, uint16_t y) {
   uint32_t pos = 0, startTime = millis();
 
 	if((x >= _tft->width()) || (y >= _tft->height())) return;
-	if ((bmpFile = SPIFFS.open(filename, "r")) == NULL) return;
+	if ((bmpFile = LittleFS.open(filename, "r")) == NULL) return;
 
   	if(read16(bmpFile) == 0x4D42) { 							// BMP signature
 		read32(bmpFile); 										// "File size"
@@ -304,7 +304,7 @@ void adriTFTUI_lblValue::lbl_get(){
 	String split_1[2];
 
 	for (int i = 0; i < _lines_cnt; ++i) {
-		explode(_lines[i], _line_sep, split_1);
+		adri_toolsv2Ptr_get()->explode(_lines[i], _line_sep, split_1);
 		Serial.printf("\t[%d] name: %-20s : %s\n", i, split_1[0].c_str(), split_1[1].c_str());
 	}
 }
@@ -357,7 +357,7 @@ void adriTFTUI_lblValue::lineSplit_add(String str){
 
 	String 	split_1[50];
 
-	explode(str, _lines_sep, split_1);
+	adri_toolsv2Ptr_get()->explode(str, _lines_sep, split_1);
 
 	for (int i = 0; i < adriTFTUI_lblValue_max; ++i)
 	{
@@ -411,7 +411,7 @@ void adriTFTUI_lblValue::rect_clear(uint16_t c){
 	int y = _y;
 
 	for (int i = 0; i < _lines_cnt; ++i) {
-		int cnt = explode(_lines[i], _line_sep, split_1);
+		int cnt = adri_toolsv2Ptr_get()->explode(_lines[i], _line_sep, split_1);
 		if (cnt < 2) continue;
 
 		if (_u8g2_text) {
@@ -450,7 +450,7 @@ void adriTFTUI_lblValue::rect_create(uint16_t c){
 	int y = _y;
 
 	for (int i = 0; i < _lines_cnt; ++i) {
-		int cnt = explode(_lines[i], _line_sep, split_1);
+		int cnt = adri_toolsv2Ptr_get()->explode(_lines[i], _line_sep, split_1);
 		if (cnt < 2) continue;
 
 		if (_u8g2_text) {
@@ -493,7 +493,7 @@ void adriTFTUI_lblValue::lines_create(int x, int y){
 	adriTFTUI_txtBox temp(_tft, _u8g2);
 
 	for (int i = 0; i < _lines_cnt; ++i) {
-		int cnt = explode(_lines[i], _line_sep, split_1);
+		int cnt = adri_toolsv2Ptr_get()->explode(_lines[i], _line_sep, split_1);
 		if (cnt < 2) continue;
 
 		if (_u8g2_text) {

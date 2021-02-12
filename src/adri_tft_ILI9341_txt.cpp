@@ -303,7 +303,7 @@ void adriTFTUI_txtBox::u8g2_drawRect(int h, int w){
 	u8g2_draw(_text);
 }
 void adriTFTUI_txtBox::u8g2_drawRect(String v){
-	char buffer_text[100];
+	// char buffer_text[100];
 	u8g2_drawRect();
 	_text = v;
 	u8g2_drawRect();

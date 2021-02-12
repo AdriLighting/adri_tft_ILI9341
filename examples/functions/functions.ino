@@ -91,7 +91,7 @@
 #include <adri_tft_ILI9341_ui.h>
 #include <adri_tft_ILI9341_txt.h>
 #include <adri_timer.h>
-#include <adri_tools.h>
+#include <adri_tools_v2.h>
 
 #include <ILI9341_esp_controls.h>
 #include <JPEGDecoder.h>
@@ -153,7 +153,7 @@ void setup()
 	Serial.println("---");
 	Serial.println("");
 
-	SPIFFS.begin();
+	LittleFS.begin();
 
     tft_setup(&tft, &touch);
 
