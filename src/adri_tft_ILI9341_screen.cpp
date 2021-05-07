@@ -1,6 +1,6 @@
 #include "adri_tft_ILI9341_screen.h"
 
-
+// #define DEBUG
 // adriTFTscreen::adriTFTscreen(int count, adriTFTscreen_list * list)
 // {
 // 	_pos 		= 0;

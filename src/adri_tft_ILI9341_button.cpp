@@ -80,6 +80,9 @@ void adriTFTUI_button::attachFunc(void (*func)(void)){
 void adriTFTUI_button::attachFunc(void (*func)(int pos)){
 	_funParm = func;
 }
+void adriTFTUI_button::attachFunc(void (*func)(String value)){
+	_funcParmStr = func;
+}
 
 /**************************************************************************/
 /*!
@@ -237,7 +240,7 @@ void adriTFTUI_button::button_create_fromLoop(){
 		case BTM_PLAY: 		buttonPlay_create(); 			break;
 		case BTM_UP: 		buttonUp_create(); 				break;
 		case BTM_DOWN: 		buttonDown_create(); 			break;
-		case BTM_TEXT: 		buttonText_create(_text); 		break;
+		case BTM_TEXT: 		buttonText_create(""); 			break;
 		case BTM_FTEXT: 	buttonFromText_create(_text);	break;
 		case BTM_TEXTUTF8:  buttonTextUtf8_create(_text);	break;
 		case BTM_FTEXTUTF8: buttonFromTextUtf8_create(_text);	break;		

@@ -33,5 +33,5 @@ void adriTFTscreen_next(int delta);
 void adriTFTscreen_get_pos(int & pos);
 const char *  adriTFTscreen_get_name();
 void adriTFTscreen_set_pos(int pos);
-
+extern int adriTFTscreen_count;
 #endif

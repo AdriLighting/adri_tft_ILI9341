@@ -37,8 +37,11 @@ void calibrate(Adafruit_ILI9341 * tft, XPT2046 * touch) {
 }
 
 void tft_setup(Adafruit_ILI9341 * tft, XPT2046 * touch){
-
-		SPI.setFrequency(ESP_SPI_FREQ);
+		#if defined(ESP8266)
+			SPI.setFrequency(ESP_SPI_FREQ);
+		#elif defined(ESP32)
+		#else
+		#endif    	
 
 		tft->begin();		
 
@@ -49,7 +52,8 @@ void tft_setup(Adafruit_ILI9341 * tft, XPT2046 * touch){
 		// Serial.print("tftx ="); Serial.print(tft->width()); Serial.print(" tfty ="); Serial.println(tft->height());
 		// calibrate( tft,  touch);
 
-  		touch->setCalibration(1839,268,312,1784); // x2 1
+  		touch->setCalibration(156,1760,1736,267); // x2 1
+  		// touch->setCalibration(1839,268,312,1784); // x2 1
   		// touch->setCalibration(177,1712,1824,241); // x2 1
   		// touch->setCalibration(1887,1799,352,288); // x1 1
 
@@ -59,8 +63,11 @@ void tft_setup(Adafruit_ILI9341 * tft, XPT2046 * touch){
 
 }
 void tft_setup(Adafruit_ILI9341 * tft){
-
-		SPI.setFrequency(ESP_SPI_FREQ);
+		#if defined(ESP8266)
+			SPI.setFrequency(ESP_SPI_FREQ);
+		#elif defined(ESP32)
+		#else
+		#endif  
 
 		tft->begin();		
 

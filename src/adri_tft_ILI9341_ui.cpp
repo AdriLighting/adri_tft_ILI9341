@@ -157,7 +157,6 @@ int16_t adriTFTUI::drawRectWithLabel(
 	_tft->getTextBounds(text, 0, 0, &xT, &yT, &wT, &hT);
 	int pos 	= ((w/2) - (xSep_2) - (wT/2));
 	int xSep  	= ((pos*2)*sep_1)/100;
-	int16_t y1 = y;
 	int16_t x1 		= x;
 	int16_t x2 		= x + xSep + wT + (xSep_2*2);
 	int16_t w2 		= w - (xSep + wT + (xSep_2*2));
@@ -196,14 +195,22 @@ void adriTFTUI::drawBmp(String filename, uint8_t x, uint16_t y) {
   uint32_t rowSize;               // Not always = bmpWidth; may have padding
   uint8_t  sdbuffer[3*BUFFPIXEL]; // pixel buffer (R+G+B per pixel)
   uint8_t  buffidx = sizeof(sdbuffer); // Current position in sdbuffer
-  boolean  goodBmp = false;       // Set to true on valid header parse
+  // boolean  goodBmp = false;       // Set to true on valid header parse
   boolean  flip    = true;        // BMP is stored bottom-to-top
   int      w, h, row, col;
   uint8_t  r, g, b;
-  uint32_t pos = 0, startTime = millis();
+  uint32_t pos = 0;
 
 	if((x >= _tft->width()) || (y >= _tft->height())) return;
-	if ((bmpFile = LittleFS.open(filename, "r")) == NULL) return;
+	#if defined(ESP8266)
+		bmpFile = LittleFS.open(filename, "r");
+	#elif defined(ESP32)
+		bmpFile = SPIFFS.open(filename, "r");
+	#else
+	#endif    		
+	
+
+	if (!bmpFile) return;
 
   	if(read16(bmpFile) == 0x4D42) { 							// BMP signature
 		read32(bmpFile); 										// "File size"
@@ -217,7 +224,7 @@ void adriTFTUI::drawBmp(String filename, uint8_t x, uint16_t y) {
 		if(read16(bmpFile) == 1) { 								// # planes -- must be '1'
 	 		bmpDepth = read16(bmpFile); 						// bits per pixel
 	  		if((bmpDepth == 24) && (read32(bmpFile) == 0)) { 	// 0 = uncompressed
-				goodBmp = true; 								// Supported BMP format -- proceed!
+				// goodBmp = true; 								// Supported BMP format -- proceed!
 				rowSize = (bmpWidth * 3 + 3) & ~3;
 
 				// If bmpHeight is negative, image is in top-down order.
@@ -328,6 +335,7 @@ int adriTFTUI_lblValue::line_add(String str){
 			return i;
 		}
 	}
+	return -1;
 }
 int adriTFTUI_lblValue::line_add(String name, String value){
 	if ((name == "") && (value = "")) return -1;
@@ -363,7 +371,7 @@ void adriTFTUI_lblValue::lineSplit_add(String str){
 	{
 		String line = split_1[i];
 		if (line != ""){
-			int pos = line_add(line);
+			line_add(line);
 			// Serial.printf("[%d] %s\n", pos, line.c_str());
 		}
 	}
@@ -391,8 +399,8 @@ void adriTFTUI_lblValue::string_getWh(String text, uint16_t & w, uint16_t & h) {
 void adriTFTUI_lblValue::rect_clear(uint16_t c){
 
 
-	int16_t x1, y1;
-	uint16_t w, h;
+	// int16_t x1, y1;
+	// uint16_t w, h;
 
 	String split_1[2];
 

@@ -63,8 +63,10 @@ class adriTFTUI_button {
 	public:
 		void 			(*_func)(void);
 		void 			(*_funParm)(int pos);
+		void 			(*_funcParmStr)(String value);
 		void attachFunc(void (*func)(void));
 		void attachFunc(void (*func)(int pos));
+		void attachFunc(void (*func)(String value));
 
 		Adafruit_ILI9341 		* _tft;
 		U8G2_FOR_ADAFRUIT_GFX 	_u8g2;
@@ -185,6 +187,7 @@ class adriTFTUI_buttonID {
 		String 			_id 		= "test";
 		const char *	_screen		= "main";
 		int 			_eventPos 	= -1;
+		String 			_enventStr 	= ""; 
 
 	public:
 		adriTFTUI_buttonID(adriTFTUI_button * btn);
